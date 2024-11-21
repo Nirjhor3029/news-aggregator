@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\ApiArticleController;
 use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -30,4 +31,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user', function (Request $request) {
         return $request->user();
     });
+
+
+    Route::get('/articles', [ApiArticleController::class, 'index']); // Fetch articles with filters and pagination
+    Route::get('/article/{id}', [ApiArticleController::class, 'show']); // Retrieve single article details
+
 });
